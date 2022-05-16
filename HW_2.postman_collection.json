@@ -1,0 +1,192 @@
+{
+	"info": {
+		"_postman_id": "304af191-6056-4a77-ad4e-1dade0b25c4d",
+		"name": "HW_2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "first",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"http://162.55.220.72:5005/first",
+							"// 1. Отправить запрос.",
+							"// 2. Статус код 200",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"// 3. Проверить, что в body приходит правильный string.",
+							"",
+							"//вариант 1",
+							"pm.test(\"в body приходит правильный string\", function () {",
+							"    pm.response.to.have.body(\"This is the first responce from server!ss\");",
+							"});",
+							"",
+							"//вариант 2",
+							"pm.test(\"Body contains string\",() => {",
+							"  pm.expect(pm.response.text()).to.include(\"This is the first responce from server!ss\");",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://162.55.220.72:5007/first",
+					"protocol": "http",
+					"host": [
+						"162",
+						"55",
+						"220",
+						"72"
+					],
+					"port": "5007",
+					"path": [
+						"first"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user_info_3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// http://162.55.220.72:5005/user_info_3",
+							"// 1. Отправить запрос.",
+							"// 2. Статус код 200",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"// 3. Спарсить response body в json.",
+							"let jsonData = pm.response.json();",
+							"",
+							"",
+							"// 4. Проверить, что name в ответе равно name s request (name вбить руками.)",
+							"  ",
+							"  let user_name_chek = \"Marina\"",
+							"  let user_name = jsonData.name",
+							"",
+							"  pm.test(\"user_name_chek\", function () {",
+							"    pm.expect(user_name).to.eql(user_name_chek);",
+							"});",
+							"",
+							"// 5. Проверить, что age в ответе равно age s request (age вбить руками.)",
+							"  ",
+							"  let user_age_chek = \"43\"",
+							"  let user_age = jsonData.age",
+							"",
+							"pm.test(\"user_age_chek\", function () {",
+							"    pm.expect(user_age).to.eql(user_age_chek);",
+							"});",
+							"",
+							"// 6. Проверить, что salary в ответе равно salary s request (salary вбить руками.)",
+							"",
+							"  let user_salary_chek = 3000",
+							"  let user_salary = jsonData.salary",
+							"",
+							"pm.test(\"user_salary_chek\", function () {",
+							"    pm.expect(user_salary).to.eql(user_salary_chek);",
+							"});",
+							"console.log(user_salary_chek, jsonData);",
+							"",
+							"// 7. Спарсить request.",
+							"",
+							"let req = request.data;",
+							"// console.log(typeof(req));",
+							"console.log(\"req_user = \", jsonData);",
+							"",
+							"// 8. Проверить, что name в ответе равно name s request (name забрать из request.)",
+							"let req_name = req.name;",
+							"// console.log(req_name);",
+							"// console.log(jsonData.name, req_name);",
+							"pm.test(\"name в ответе равно name s request\", function () {",
+							"    pm.expect(jsonData.name).to.eql(req_name);",
+							"});",
+							"",
+							"// 9. Проверить, что age в ответе равно age s request (age забрать из request.)",
+							"let req_age = req.age;",
+							"// console.log(req_age);",
+							"// console.log(jsonData.age, req_age);",
+							"pm.test(\"age в ответе равно age s request\", function () {",
+							"    pm.expect(jsonData.age).to.eql(req_age);",
+							"});",
+							"",
+							"// 10. Проверить, что salary в ответе равно salary s request (salary забрать из request.)",
+							"let req_salary = +req.salary;",
+							"// console.log(req_salary);",
+							"// console.log(jsonData.salary, req_salary);",
+							"pm.test(\"salary в ответе равно salary s request\", function () {",
+							"    pm.expect(jsonData.salary).to.eql(req_salary);",
+							"});",
+							"",
+							"// 11. Вывести в консоль параметр family из response.",
+							"",
+							" let user_family = jsonData.family[];",
+							"console.log(user_gamily, jsonData);",
+							"",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "age",
+							"value": "43",
+							"type": "text"
+						},
+						{
+							"key": "salary",
+							"value": "3000",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Marina",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://162.55.220.72:5007/user_info_3",
+					"protocol": "http",
+					"host": [
+						"162",
+						"55",
+						"220",
+						"72"
+					],
+					"port": "5007",
+					"path": [
+						"user_info_3"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
