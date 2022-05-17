@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "c4d07874-e2ad-4833-b17d-6500def03d1a",
+		"_postman_id": "e0915dc2-7085-44cc-85a4-bb396835be39",
 		"name": "HW_1",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -26,7 +26,7 @@
 					"query": [
 						{
 							"key": "get_metod",
-							"value": null,
+							"value": "",
 							"disabled": true
 						},
 						{
