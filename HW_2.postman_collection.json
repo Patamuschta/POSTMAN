@@ -461,16 +461,17 @@
 							"\r",
 							"let environment_name = responsData.name\r",
 							"pm.environment.set(\"name\", environment_name);\r",
-							"\r",
+							"console.log(\"15. \", environment_name)\r",
 							"// 16. Создать в окружении переменную age\r",
 							"\r",
 							"let environment_age = responsData.age\r",
 							"pm.environment.set(\"age\", environment_age);\r",
-							"\r",
+							"console.log(\"16. \", environment_age)\r",
 							"// 17. Создать в окружении переменную salary\r",
 							"\r",
-							"let environment_salary = responsData.salary\r",
-							"pm.environment.set(\"salary\", environment_salary);\r",
+							"let environment_salary_0 = +responsData.salary[0];\r",
+							"pm.environment.set(\"salary[0]\", environment_salary_0);\r",
+							" console.log(\"17. \", environment_salary_0)\r",
 							"\r",
 							"// 18. Передать в окружение переменную name\r",
 							"\r",
@@ -533,7 +534,7 @@
 					]
 				},
 				"url": {
-					"raw": "http://162.55.220.72:5007/object_info_4?name=Ivan&age=30&salary=5000",
+					"raw": "http://162.55.220.72:5007/object_info_4?name=Marina&age=28&salary=6000",
 					"protocol": "http",
 					"host": [
 						"162",
@@ -548,15 +549,161 @@
 					"query": [
 						{
 							"key": "name",
-							"value": "Ivan"
+							"value": "Marina"
 						},
 						{
 							"key": "age",
-							"value": "30"
+							"value": "28"
 						},
 						{
 							"key": "salary",
-							"value": "5000"
+							"value": "6000"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user_info_2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// http://162.55.220.72:5005/user_info_2\r",
+							"// 1. Вставить параметр salary из окружения в request\r",
+							"// +\r",
+							"\r",
+							"// 2. Вставить параметр age из окружения в age\r",
+							"// +\r",
+							"\r",
+							"// 3. Вставить параметр name из окружения в name\r",
+							"// +\r",
+							"\r",
+							"// 4. Отправить запрос.\r",
+							"\r",
+							"\r",
+							"// 5. Статус код 200\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// 6. Спарсить response body в json.\r",
+							"let responseData = pm.response.json();\r",
+							"\r",
+							"console.log(\"6.  \", responseData);\r",
+							"\r",
+							"// 7. Спарсить request.\r",
+							"let req = request.data;\r",
+							"// console.log(typeof(req));\r",
+							"console.log(\"7.  \", req);\r",
+							"\r",
+							"// 8. Проверить, что json response имеет параметр start_qa_salary\r",
+							"\r",
+							"\r",
+							"\r",
+							"// 9. Проверить, что json response имеет параметр qa_salary_after_6_months\r",
+							"\r",
+							"\r",
+							"// 10. Проверить, что json response имеет параметр qa_salary_after_12_months\r",
+							"\r",
+							"\r",
+							"// 11. Проверить, что json response имеет параметр qa_salary_after_1.5_year\r",
+							"\r",
+							"\r",
+							"// 12. Проверить, что json response имеет параметр qa_salary_after_3.5_years\r",
+							"\r",
+							"\r",
+							"// 13. Проверить, что json response имеет параметр person\r",
+							"\r",
+							"\r",
+							"// 14. Проверить, что параметр start_qa_salary равен salary из request (salary забрать из request.)\r",
+							"\r",
+							"\r",
+							"// 15. Проверить, что параметр qa_salary_after_6_months равен salary*2 из request (salary забрать из request.)\r",
+							"\r",
+							"\r",
+							"// 16. Проверить, что параметр qa_salary_after_12_months равен salary*2.7 из request (salary забрать из request.)\r",
+							"\r",
+							"\r",
+							"// 17. Проверить, что параметр qa_salary_after_1.5_year равен salary*3.3 из request (salary забрать из request.)\r",
+							"\r",
+							"\r",
+							"// 18. Проверить, что параметр qa_salary_after_3.5_years равен salary*3.8 из request (salary забрать из request.)\r",
+							"\r",
+							"\r",
+							"// 19. Проверить, что в параметре person, 1-й элемент из u_name равен salary из request (salary забрать из request.)\r",
+							"\r",
+							"\r",
+							"// 20. Проверить, что что параметр u_age равен age из request (age забрать из request.)\r",
+							"\r",
+							"\r",
+							"// 21. Проверить, что параметр u_salary_5_years равен salary*4.2 из request (salary забрать из request.)\r",
+							"\r",
+							"\r",
+							"// 22. ***Написать цикл который выведет в консоль по порядку элементы списка из параметра person.\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "{{name}}",
+							"type": "text"
+						},
+						{
+							"key": "age",
+							"value": "{{age}}",
+							"type": "text"
+						},
+						{
+							"key": "salary",
+							"value": "{{salary[0]}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://162.55.220.72:5007/user_info_2",
+					"protocol": "http",
+					"host": [
+						"162",
+						"55",
+						"220",
+						"72"
+					],
+					"port": "5007",
+					"path": [
+						"user_info_2"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Ivan",
+							"disabled": true
+						},
+						{
+							"key": "age",
+							"value": "30",
+							"disabled": true
+						},
+						{
+							"key": "salary",
+							"value": "5000",
+							"disabled": true
 						}
 					]
 				}
