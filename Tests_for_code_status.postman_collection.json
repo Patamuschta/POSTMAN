@@ -6,13 +6,15 @@
 	},
 	"item": [
 		{
-			"name": "first Copy",
+			"name": "Status_gode_check_Snippets",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
 							"http://162.55.220.72:5005/first",
+							"// ************ Snippets   *************",
+							"",
 							"// 1. Проверка что статус код содержит 200",
 							"pm.test(\"Status code is 200\", function () {",
 							"    pm.response.to.have.status(200);",
@@ -72,7 +74,43 @@
 							"    pm.response.to.be.ok;",
 							"});",
 							"",
-							"// Chai official doc",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://162.55.220.72:5005/first",
+					"protocol": "http",
+					"host": [
+						"162",
+						"55",
+						"220",
+						"72"
+					],
+					"port": "5005",
+					"path": [
+						"first"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Status_gode_check_Chai.js",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"http://162.55.220.72:5005/first",
+							"",
+							"// ***********  Chai official doc  **************",
+							"",
 							"// 11. Проверить, что статус код ответа не 400.",
 							"",
 							"pm.test(\"Status code is not 400\", function () {",
@@ -167,6 +205,73 @@
 							"",
 							"",
 							"",
+							"",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://162.55.220.72:5005/first",
+					"protocol": "http",
+					"host": [
+						"162",
+						"55",
+						"220",
+						"72"
+					],
+					"port": "5005",
+					"path": [
+						"first"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Status_gode_check_Node.js",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// http://162.55.220.72:5005/first",
+							"// or",
+							"// http://162.55.220.72:5005/first",
+							"",
+							"// ***********  Node.js official doc  **************",
+							"",
+							"// 26. Проверить, что статус код ответа точно равен 200 через assert.ok",
+							"",
+							"const assert = require('assert');",
+							"assert.ok(true);",
+							"pm.test(\"Проверка через assert.ok \", function () {",
+							"    assert.ok(pm.response.code === 200);",
+							"});",
+							"",
+							"// 27. Проверить, что статус код ответа точно равен 200 через assert",
+							"",
+							"pm.test(\"Проверка через assert \", function () {",
+							"    assert(pm.response.code === 200);",
+							"});",
+							"",
+							"// 28. Проверить, что статус код ответа равен 200 через deepEqual, при сравнении строку приведет к числу (!!!)",
+							"",
+							"pm.test(\"Проверка через deepEqual \", function () {",
+							"    assert.deepEqual(pm.response.code, 200);",
+							"});",
+							"",
+							"// 29. Проверить, что статус код ответа точно равен 200 через deepStrictEqual, при сравнении строку не приведет к числу (!!!). Лучше использвать этот способ.",
+							"",
+							"pm.test(\"Проверка через deepStrictEqual \", function () {",
+							"    assert.deepStrictEqual(pm.response.code, 200);",
+							"});",
 							"",
 							"",
 							"",
