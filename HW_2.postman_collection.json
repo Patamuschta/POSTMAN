@@ -2,7 +2,8 @@
 	"info": {
 		"_postman_id": "2df86d93-6f9c-4df6-91c1-769ff85e665e",
 		"name": "HW_2",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20447157"
 	},
 	"item": [
 		{
@@ -694,11 +695,14 @@
 							"console.log(\" 21. \", responseData.person.u_salary_5_years, (+req.salary*4.2));\r",
 							"\r",
 							"// 22. ***Написать цикл который выведет в консоль по порядку элементы списка из параметра person.\r",
-							"let arr = responseData;\r",
 							"\r",
-							"for (key in arr.person) {\r",
-							"  console.log(`${key}`);\r",
+							"let arr = responseData.person;\r",
+							"\r",
+							"for (key in arr) {\r",
+							"  console.log(\" 22. \", `${key} = ${arr[key]}`);\r",
 							"}\r",
+							"\r",
+							"\r",
 							"\r",
 							""
 						],
@@ -758,6 +762,104 @@
 							"value": "5000",
 							"disabled": true
 						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Validate_user_info_2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// 1) Name: 3-40 символов включительно, запрещены префиксные и постфиксные пробелы. Поле обязательное\r",
+							"// 2) Age: только целые цифры в диапазоне 18-120 включительно. Поле обязательное\r",
+							"// 3) Salary: только целые цифры в диапазоне 1-1000000 включительно. Поле обязательное\r",
+							"\r",
+							"function nameValidation(value) {\r",
+							"    if(value && value.length > 2 && value.length < 41 && value.trim() == value) {\r",
+							"        return true\r",
+							"    } else return false\r",
+							"} \r",
+							"function ageValidation(value) {\r",
+							"  if(value && !isNaN(value) && value > 17 && value < 121 && Number.isInteger(+value)) {\r",
+							"      return true\r",
+							"  } else return false\r",
+							"}\r",
+							"\r",
+							" function salaryValidation(value) {\r",
+							"     if(value && !isNaN(value) && value > 0 && value < 11000001 && Number.isInteger(+value)) {\r",
+							"         return true\r",
+							"     } else return false\r",
+							" }\r",
+							"\r",
+							"function validator() {\r",
+							"    return nameValidation(name) && ageValidation(age) && salaryValidation(salary) ? true : false\r",
+							"}\r",
+							"let name = pm.iterationData.get('name')\r",
+							"let age = pm.iterationData.get('age')\r",
+							"let salary = pm.iterationData.get('salary')\r",
+							"\r",
+							"\r",
+							"if(validator()) {\r",
+							"    pm.test(`Expect status 200 with name = \"${name}\", age = \"${age}\" and salary = \"${salary}\"`, () => {\r",
+							"         pm.response.to.have.status(200);\r",
+							"    }) \r",
+							"} else {\r",
+							"     pm.test(`Expect NOT to have status 200 with name = \"${name}\", age = \"${age}\" and salary = \"${salary}\"`, () => {\r",
+							"         pm.response.to.not.have.status(200);\r",
+							"    })  \r",
+							"}\r",
+							"console.log(validator())\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "{{name}}",
+							"type": "text"
+						},
+						{
+							"key": "age",
+							"value": "{{age}}",
+							"type": "text"
+						},
+						{
+							"key": "salary",
+							"value": "{{salary}}",
+							"type": "text"
+						},
+						{
+							"key": "",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://162.55.220.72:5005/user_info_2",
+					"protocol": "http",
+					"host": [
+						"162",
+						"55",
+						"220",
+						"72"
+					],
+					"port": "5005",
+					"path": [
+						"user_info_2"
 					]
 				}
 			},
